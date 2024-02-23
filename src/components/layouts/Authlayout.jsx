@@ -6,10 +6,10 @@ const AuthLayout = (props) => {
   return (
     <>
       <div className="flex md:flex-row flex-col">
-        <div className="md:w-[40%] bg-[#F5F5F5]">
+        <div className="hidden md:block md:w-[40%] bg-[#F5F5F5]">
           <Image type={type} />
         </div>
-        <div className="md:w-[60%] w-full h-screen flex flex-col justify-center items-center p-16">
+        <div className="md:w-[60%] w-full h-screen flex flex-col justify-center items-center py-16 px-4 md:p-16">
           <a
             href="#"
             className="text-center font-montserrat text-4xl font-bold">
