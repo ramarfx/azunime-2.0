@@ -4,5 +4,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-secondary-300 text-white
+  @apply bg-secondary-300 text-white font-poppins
 }
