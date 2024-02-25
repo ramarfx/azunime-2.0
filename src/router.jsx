@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Login from "./view/Login";
 import Register from "./view/Register";
@@ -11,6 +11,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <GuestLayout />,
     children: [
+      {path: '/', element: <Navigate to={'/dashboard'} />},
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
     ],
@@ -19,13 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <DefaultLayout />,
-    children: [{ path: "/dashboard", element: <Dashboard /> }],
-  },
-
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <div>Error</div>,
+    children: [
+      {path: '/', element: <Navigate to={'/dashboard'} />},
+      { path: "/dashboard", element: <Dashboard /> }
+    ],
   },
 ]);
 
