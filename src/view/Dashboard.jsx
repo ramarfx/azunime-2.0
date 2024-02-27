@@ -9,16 +9,16 @@ import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const card = [
-    "/public/bocchi.webp",
-    "/public/furia.jpg",
-    "/public/bocchi.webp",
-    "/public/furia.jpg",
-    "/public/bocchi.webp",
-    "/public/furia.jpg",
-    "/public/bocchi.webp",
-    "/public/furia.jpg",
-    "/public/bocchi.webp",
-    "/public/furia.jpg",
+    "/bocchi.webp",
+    "/furia.jpg",
+    "/bocchi.webp",
+    "/furia.jpg",
+    "/bocchi.webp",
+    "/furia.jpg",
+    "/bocchi.webp",
+    "/furia.jpg",
+    "/bocchi.webp",
+    "/furia.jpg",
   ];
 
   return (
