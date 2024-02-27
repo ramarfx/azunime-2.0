@@ -1,3 +1,10 @@
+import { faEdit } from "@fortawesome/free-regular-svg-icons";
+import {
+  faAdd,
+  faPlay,
+  faRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
@@ -25,6 +32,7 @@ const Dashboard = () => {
 
       <div className="container h-[200vh] pt-4">
         <div className="flex max-w-[1400px] flex-col gap-4 md:flex-row">
+          {/* card */}
           <div className="flex h-[400px] w-full flex-col items-center gap-4 rounded-xl bg-secondary-100 md:w-[300px]">
             <div className="-mt-14 size-[130px] overflow-hidden rounded-full border-[7px] border-secondary-100">
               <img
@@ -49,26 +57,26 @@ const Dashboard = () => {
             <div className="mt-5 flex flex-col gap-5">
               <Link
                 to={"#"}
-                className="flex items-center gap-1 text-base font-light"
+                className="flex items-center gap-1.5 text-base font-light"
               >
-                <span className="material-symbols-outlined text-primary">
-                  add
-                </span>{" "}
+                <FontAwesomeIcon icon={faAdd} className="text-primary" />
                 Tambah Anime
               </Link>
 
               <Link
                 to={"#"}
-                className="flex items-center gap-1 text-base font-light"
+                className="flex items-center gap-1.5 text-base font-light"
               >
-                <span className="material-symbols-outlined text-red-500">
-                  logout
-                </span>{" "}
+                <FontAwesomeIcon
+                  icon={faRightFromBracket}
+                  className="text-red-500"
+                />
                 Logout
               </Link>
             </div>
           </div>
 
+          {/* main */}
           <div className="w-full rounded-xl bg-secondary-100 p-6 pb-12 md:w-[calc(100%-315px)]">
             <div className="overflow-x-hidden pb-4">
               <ul className="flex gap-16 text-base font-semibold text-secondary-50 hover:text-secondary-50">
@@ -86,13 +94,40 @@ const Dashboard = () => {
               </ul>
             </div>
 
-            <div className="grid w-full grid-cols-3 gap-5 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-5">
+            <div className="grid w-full grid-cols-3 gap-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
               {card.map((image, index) => (
                 <div
                   key={index}
-                  className="relative max-h-[250px] overflow-hidden rounded-xl bg-red-500"
+                  className={`group relative max-h-[250px] w-auto overflow-hidden rounded-xl bg-red-500`}
                 >
-                  <img src={image} className="h-full w-full object-cover" />
+                  <img
+                    src={image}
+                    className={`h-full w-full object-cover brightness-100 transition group-hover:brightness-[30%]`}
+                  />
+
+                  <div className="absolute right-0 top-0 flex h-full w-full flex-col items-center justify-center gap-1 opacity-0 transition-all group-hover:opacity-100">
+                    <Link
+                      to={"#"}
+                      className="absolute right-1.5 top-1.5 scale-90 text-white transition-colors hover:text-primary"
+                    >
+                      <FontAwesomeIcon icon={faEdit} />
+                    </Link>
+                    <p className="rounded-lg bg-slate-100/30 px-2 py-1 text-xs font-thin text-white">
+                      12 episode
+                    </p>
+                    <h5 className="text-base font-semibold text-white">
+                      Bocchi The Rock
+                    </h5>
+                    <p className="text-xs font-thin text-white">Music</p>
+
+                    <Link
+                      to={"#"}
+                      className="flex items-center gap-1 rounded-lg bg-slate-100/30 px-2 py-1 text-xs font-thin text-white"
+                    >
+                      <FontAwesomeIcon icon={faPlay} />
+                      Play
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>
