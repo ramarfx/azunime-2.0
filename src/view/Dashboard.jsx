@@ -21,6 +21,21 @@ const Dashboard = () => {
     "/furia.jpg",
   ];
 
+  const Genre = [
+    "All",
+    "Action",
+    "Romance",
+    "Isekai",
+    "All",
+    "Action",
+    "Romance",
+    "Isekai",
+    "All",
+    "Action",
+    "Romance",
+    "Isekai",
+  ];
+
   return (
     <div>
       <div
@@ -79,26 +94,23 @@ const Dashboard = () => {
           {/* main */}
           <div className="w-full rounded-xl bg-secondary-100 p-6 pb-12 md:w-[calc(100%-315px)]">
             <div className="overflow-x-hidden pb-4">
-              <ul className="flex gap-16 text-base font-semibold text-secondary-50 hover:text-secondary-50">
-                <li>All</li>
-                <li>Action</li>
-                <li>Romance</li>
-                <li>Action</li>
-                <li>Romance</li>
-                <li>Action</li>
-                <li>Romance</li>
-                <li>Action</li>
-                <li>Romance</li>
-                <li>Action</li>
-                <li>Romance</li>
+              <ul className="flex gap-16 text-base font-semibold">
+                {Genre.map((genre, index) => (
+                  <li
+                    key={index}
+                    className="text-secondary-50 transition-colors hover:text-white"
+                  >
+                    <Link to={"#"}>{genre}</Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            <div className="grid w-full grid-cols-3 gap-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+            <div className="grid w-full grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 md:gap-5 lg:grid-cols-6">
               {card.map((image, index) => (
                 <div
                   key={index}
-                  className={`group relative max-h-[250px] w-auto overflow-hidden rounded-xl bg-red-500`}
+                  className={`group relative max-h-[250px] w-auto overflow-hidden rounded-xl`}
                 >
                   <img
                     src={image}
@@ -108,21 +120,21 @@ const Dashboard = () => {
                   <div className="absolute right-0 top-0 flex h-full w-full flex-col items-center justify-center gap-1 opacity-0 transition-all group-hover:opacity-100">
                     <Link
                       to={"#"}
-                      className="absolute right-1.5 top-1.5 scale-90 text-white transition-colors hover:text-primary"
+                      className="absolute right-1 top-1 scale-90 text-white transition-colors hover:text-primary md:right-1.5 md:top-1.5"
                     >
-                      <FontAwesomeIcon icon={faEdit} />
+                      <FontAwesomeIcon icon={faEdit} className="text-sm" />
                     </Link>
-                    <p className="rounded-lg bg-slate-100/30 px-2 py-1 text-xs font-thin text-white">
+                    <p className="scale-75 rounded-lg bg-slate-100/30 px-2 py-1 text-xs font-thin text-white md:scale-100">
                       12 episode
                     </p>
-                    <h5 className="text-base font-semibold text-white">
-                      Bocchi The Rock
+                    <h5 className="text-center text-xs font-semibold text-white md:px-1 md:text-base">
+                      Bocchi The Rock K-On desu
                     </h5>
                     <p className="text-xs font-thin text-white">Music</p>
 
                     <Link
                       to={"#"}
-                      className="flex items-center gap-1 rounded-lg bg-slate-100/30 px-2 py-1 text-xs font-thin text-white"
+                      className="flex items-center gap-1 rounded-lg bg-slate-100/30 px-2 py-1 text-xs font-thin text-white hover:bg-primary md:px-3 md:text-sm"
                     >
                       <FontAwesomeIcon icon={faPlay} />
                       Play
