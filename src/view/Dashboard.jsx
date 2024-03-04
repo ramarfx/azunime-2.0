@@ -57,7 +57,7 @@ const Dashboard = () => {
               />
             </div>
 
-            <h5 className="text-center text-xl font-semibold">Admin</h5>
+            <h5 className="text-center text-xl font-semibold">Ramadina Al Muzthazam</h5>
 
             <div className="rounded-xl bg-primary px-7 py-2">
               <p className="text-lg">Administator</p>
@@ -65,7 +65,7 @@ const Dashboard = () => {
 
             <div className="py-2">
               <p className="text-sm text-secondary-50">
-                bergabung pada 12 juni 2024
+                bergabung pada 12 juni 2023
               </p>
             </div>
 
