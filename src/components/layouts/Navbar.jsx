@@ -3,19 +3,15 @@ import Input from "../elements/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const Navbar = (props) => {
   const { username, genre } = props;
-
-  const hamburgerMenu = useRef(null);
   const navbar = useRef(null);
 
-  if (hamburgerMenu && navbar) {
-    hamburgerMenu.current.addEventListener("click", () => {
-      navbar.current.classList.toggle("hidden");
-    });
-  }
+  const handleButton = () => {
+    navbar.current.classList.toggle("hidden");
+  };
 
   return (
     <section
@@ -28,7 +24,10 @@ const Navbar = (props) => {
             <span className="text-primary">Azu</span>nime
           </Link>
 
-          <nav ref={navbar} className="absolute right-0 top-16 flex w-fit flex-col items-start justify-between rounded-b-xl border border-primary bg-secondary-200 p-4 pl-5 md:static md:flex md:w-full md:flex-row md:items-center md:border-none md:p-0">
+          <nav
+            ref={navbar}
+            className="absolute right-0 top-16 flex w-fit flex-col items-start justify-between rounded-b-xl border border-primary bg-secondary-200 p-4 pl-5 md:static md:flex md:w-full md:flex-row md:items-center md:border-none md:p-0"
+          >
             <ul className="flex flex-col gap-5 md:flex-row">
               <li>
                 <Link to={"#"}>Home</Link>
@@ -59,7 +58,7 @@ const Navbar = (props) => {
             </div>
           </nav>
 
-          <button className="block md:hidden" ref={hamburgerMenu}>
+          <button className="block md:hidden" onClick={handleButton}>
             <FontAwesomeIcon icon={faBars} className="text-2xl" />
           </button>
         </div>
