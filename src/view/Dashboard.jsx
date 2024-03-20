@@ -6,8 +6,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
+import { useEffect, useState } from "react";
+import axiosClient from "../axiosClient";
 
 const Dashboard = () => {
+  const [genre, setGenre] = useState([]);
+  const [anime, setAnime] = useState([]);
   const card = [
     "/bocchi.webp",
     "/furia.jpg",
@@ -21,20 +26,22 @@ const Dashboard = () => {
     "/furia.jpg",
   ];
 
-  const Genre = [
-    "All",
-    "Action",
-    "Romance",
-    "Isekai",
-    "All",
-    "Action",
-    "Romance",
-    "Isekai",
-    "All",
-    "Action",
-    "Romance",
-    "Isekai",
-  ];
+  useEffect(() => {
+    getGenre();
+    getAnime();
+  }, []);
+
+  const getGenre = async () => {
+    const request = axiosClient.get("/genre");
+    const { data } = await request;
+    setGenre(data.data);
+  };
+
+  const getAnime = async () => {
+    const request = axiosClient.get("/anime");
+    const { data } = await request;
+    setAnime(data.data);
+  };
 
   return (
     <div>
@@ -57,7 +64,9 @@ const Dashboard = () => {
               />
             </div>
 
-            <h5 className="text-center text-xl font-semibold">Ramadina Al Muzthazam</h5>
+            <h5 className="text-center text-xl font-semibold">
+              Ramadina Al Muzthazam
+            </h5>
 
             <div className="rounded-xl bg-primary px-7 py-2">
               <p className="text-lg">Administator</p>
@@ -95,25 +104,26 @@ const Dashboard = () => {
           <div className="w-full rounded-xl bg-secondary-100 p-6 pb-12 md:w-[calc(100%-315px)]">
             <div className="overflow-x-hidden pb-4">
               <ul className="flex gap-16 text-base font-semibold">
-                {Genre.map((genre, index) => (
-                  <li
-                    key={index}
-                    className="text-secondary-50 transition-colors hover:text-white"
-                  >
-                    <Link to={"#"}>{genre}</Link>
-                  </li>
-                ))}
+                {genre &&
+                  genre.map((genre, index) => (
+                    <li
+                      key={index}
+                      className="text-secondary-50 transition-colors hover:text-white"
+                    >
+                      <Link to={"#"}>{genre.name}</Link>
+                    </li>
+                  ))}
               </ul>
             </div>
 
             <div className="grid w-full grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 md:gap-5 lg:grid-cols-6">
-              {card.map((image, index) => (
+              {anime.map((anime, index) => (
                 <div
                   key={index}
                   className={`group relative max-h-[250px] w-auto overflow-hidden rounded-xl`}
                 >
                   <img
-                    src={image}
+                    src={"/bocchi.webp"}
                     className={`h-full w-full object-cover brightness-100 transition group-hover:brightness-[30%]`}
                   />
 
@@ -125,10 +135,10 @@ const Dashboard = () => {
                       <FontAwesomeIcon icon={faEdit} className="text-sm" />
                     </Link>
                     <p className="scale-75 rounded-lg bg-slate-100/30 px-2 py-1 text-xs font-thin text-white md:scale-100">
-                      12 episode
+                      {anime.episode} episode
                     </p>
                     <h5 className="text-center text-xs font-semibold text-white md:px-1 md:text-base">
-                      Bocchi The Rock K-On desu
+                      {anime.title}
                     </h5>
                     <p className="text-xs font-thin text-white">Music</p>
 

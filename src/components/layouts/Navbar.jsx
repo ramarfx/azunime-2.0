@@ -4,14 +4,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { useEffect, useRef } from "react";
+import { useAuthContext } from "../../context/AuthContext";
 
 const Navbar = (props) => {
-  const { username, genre } = props;
+  const { username, genre, user } = props;
+  const { setUser, setToken } = useAuthContext();
   const navbar = useRef(null);
 
   const handleButton = () => {
     navbar.current.classList.toggle("hidden");
   };
+
+  const onLogout = () => {
+    setToken(null)
+    setUser({})
+  }
 
   return (
     <section
@@ -52,8 +59,11 @@ const Navbar = (props) => {
               <div className="my-4 flex items-center gap-5 md:my-0">
                 <FontAwesomeIcon icon={faUser} />
                 <Link to={"/login"} className="py-2 font-bold text-primary">
-                  Login
+                  {user}  
                 </Link>
+              </div>  
+              <div>
+                <a href="#" onClick={onLogout}>logout</a>
               </div>
             </div>
           </nav>
